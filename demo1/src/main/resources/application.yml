@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: demo1
+  datasource:
+    continue-on-error: true
+    url: jdbc:mysql://10.38.163.6:3306/game_content?useUnicode=true&characterEncoding=utf-8&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&useAffectedRows=true&zeroDateTimeBehavior=convertToNull
+    username: cmsuser_wr
+    password: dsad212Df
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    #数据库连接池选择默认 hikariCP
+    hikari.pool-name: HikariCP_Pool
+    hikari.auto-commit: true
+    hikari.maximum-pool-size: 500
+    hikari.minimum-idle: 30
+    hikari.idle-timeout: 30000
+    hikari.max-lifetime: 280000
+    hikari.connection-timeout: 30000
+    hikari.connection-test-query: SELECT 1
+server:
+  port: 9001
+
+#mybatis 配置
+mybatis:
+  mapper-locations: classpath*:mapper/**Dao.xml
+  type-aliases-package: com.xiaomi.gamecenterpack.entity
+  configuration:
+    use-generated-keys: true
+    map-underscore-to-camel-case: true
