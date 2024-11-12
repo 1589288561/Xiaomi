@@ -17,7 +17,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <protoc.version>2.6.1</protoc.version>
-        <lombok.version>1.18.20</lombok.version>
+        <lombok.version>1.18.30</lombok.version>
         <protobuf.java.version>2.6.1</protobuf.java.version>
         <protobuf.java.format.version>1.4</protobuf.java.format.version>
     </properties>
@@ -136,7 +136,7 @@
         <finalName>demo1</finalName>
         <resources>
             <resource>
-                <directory>${project.basedir}/src/main/resources</directory>
+                <directory>src</directory>
                 <filtering>true</filtering>
             </resource>
         </resources>

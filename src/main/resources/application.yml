@@ -3,9 +3,9 @@ spring:
     name: demo1
   datasource:
     continue-on-error: true
-    url: jdbc:mysql://10.38.163.6:3306/game_content?useUnicode=true&characterEncoding=utf-8&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&useAffectedRows=true&zeroDateTimeBehavior=convertToNull
-    username: cmsuser_wr
-    password: dsad212Df
+    url: jdbc:mysql://122.51.70.205:3306/pzr?useUnicode=true&characterEncoding=utf-8&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&useAffectedRows=true&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: Vvv266244!
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
     #数据库连接池选择默认 hikariCP

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.UserInfoDao">
+
+    <resultMap type="com.example.demo.model.entity.UserInfo" id="UserInfoMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="avater" column="avater" jdbcType="VARCHAR"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="gender" column="gender" jdbcType="INTEGER"/>
+        <result property="age" column="age" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="UserInfoMap">
+        select
+          id, avater, name, gender, age
+        from user_info
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="UserInfoMap">
+        select
+          id, avater, name, gender, age
+        from user_info
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="avater != null and avater != ''">
+                and avater = #{avater}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="gender != null">
+                and gender = #{gender}
+            </if>
+            <if test="age != null">
+                and age = #{age}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from user_info
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="avater != null and avater != ''">
+                and avater = #{avater}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="gender != null">
+                and gender = #{gender}
+            </if>
+            <if test="age != null">
+                and age = #{age}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into user_info(avater, name, gender, age)
+        values (#{avater}, #{name}, #{gender}, #{age})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into user_info(avater, name, gender, age)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.avater}, #{entity.name}, #{entity.gender}, #{entity.age})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into user_info(avater, name, gender, age)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.avater}, #{entity.name}, #{entity.gender}, #{entity.age})
+        </foreach>
+        on duplicate key update
+        avater = values(avater),
+        name = values(name),
+        gender = values(gender),
+        age = values(age)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update user_info
+        <set>
+            <if test="avater != null and avater != ''">
+                avater = #{avater},
+            </if>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="gender != null">
+                gender = #{gender},
+            </if>
+            <if test="age != null">
+                age = #{age},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from user_info where id = #{id}
+    </delete>
+
+</mapper>
+
