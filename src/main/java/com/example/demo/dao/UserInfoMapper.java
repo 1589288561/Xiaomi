@@ -14,7 +14,7 @@ import java.util.List;
  * @since 2024-11-12 13:57:44
  */
 @Mapper
-public interface UserInfoDao {
+public interface UserInfoMapper {
 
     /**
      * 通过ID查询单条数据

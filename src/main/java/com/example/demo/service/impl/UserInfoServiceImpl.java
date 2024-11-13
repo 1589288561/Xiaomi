@@ -2,12 +2,9 @@ package com.example.demo.service.impl;
 
 
 import com.example.demo.model.entity.UserInfo;
-import com.example.demo.dao.UserInfoDao;
+import com.example.demo.dao.UserInfoMapper;
 import com.example.demo.service.UserInfoService;
 import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.Resource;
 
@@ -20,7 +17,7 @@ import javax.annotation.Resource;
 @Service("userInfoService")
 public class UserInfoServiceImpl implements UserInfoService {
     @Resource
-    private UserInfoDao userInfoDao;
+    private UserInfoMapper userInfoMapper;
 
     /**
      * 通过ID查询单条数据
@@ -30,7 +27,7 @@ public class UserInfoServiceImpl implements UserInfoService {
      */
     @Override
     public UserInfo queryById(Integer id) {
-        return this.userInfoDao.queryById(id);
+        return this.userInfoMapper.queryById(id);
     }
 
 
@@ -42,7 +39,7 @@ public class UserInfoServiceImpl implements UserInfoService {
      */
     @Override
     public UserInfo insert(UserInfo userInfo) {
-        this.userInfoDao.insert(userInfo);
+        this.userInfoMapper.insert(userInfo);
         return userInfo;
     }
 
@@ -54,7 +51,7 @@ public class UserInfoServiceImpl implements UserInfoService {
      */
     @Override
     public UserInfo update(UserInfo userInfo) {
-        this.userInfoDao.update(userInfo);
+        this.userInfoMapper.update(userInfo);
         return this.queryById(userInfo.getId());
     }
 
@@ -66,6 +63,6 @@ public class UserInfoServiceImpl implements UserInfoService {
      */
     @Override
     public boolean deleteById(Integer id) {
-        return this.userInfoDao.deleteById(id) > 0;
+        return this.userInfoMapper.deleteById(id) > 0;
     }
 }

@@ -51,5 +51,16 @@ public class UserInfoController {
         return res;
     }
 
+    @PostMapping("/add-user")
+    public ResponseVo addUser(@RequestBody UserInfo userInfo){
+        ResponseVo res = new ResponseVo();
+        try{
+            userInfoService.insert(userInfo);
+        }catch (Exception e){
+            log.error("add user failed, userInfo={}", userInfo);
+        }
+        return res;
+    }
+
 }
 

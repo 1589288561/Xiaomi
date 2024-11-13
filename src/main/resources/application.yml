@@ -22,8 +22,8 @@ server:
 
 #mybatis 配置
 mybatis:
-  mapper-locations: classpath*:mapper/**Dao.xml
-  type-aliases-package: com.xiaomi.gamecenterpack.entity
+  mapper-locations: classpath*:mapper/*.xml
+  type-aliases-package: com.example.demo.model.entity
   configuration:
     use-generated-keys: true
     map-underscore-to-camel-case: true
