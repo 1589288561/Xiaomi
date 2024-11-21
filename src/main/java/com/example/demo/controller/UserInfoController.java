@@ -39,7 +39,7 @@ public class UserInfoController {
      * @return 单条数据
      */
     @GetMapping("/query-user")
-    public ResponseVo<UserInfo> queryById(@Param("id") Integer id) {
+    public ResponseVo<UserInfo> queryById(@RequestParam("ooo") Integer id) {
         ResponseVo<UserInfo> res = new ResponseVo<>();
         UserInfo userInfo = new UserInfo();
         try{
@@ -52,18 +52,28 @@ public class UserInfoController {
     }
 
     @PostMapping("/add-user")
-    public ResponseVo addUser(@RequestBody UserInfo userInfo){
-        ResponseVo res = new ResponseVo();
+    public ResponseVo<UserInfo> addUser(@RequestBody UserInfo userInfo){
+        ResponseVo<UserInfo> res = new ResponseVo();
         try{
             userInfoService.insert(userInfo);
+            res.setData(userInfo);
         }catch (Exception e){
             log.error("add user failed, userInfo={}", userInfo);
         }
         return res;
     }
 
-    //todo:修改用户信息接口
-
+    @PostMapping("/update-user")
+    public ResponseVo<UserInfo> updateUser(@RequestBody UserInfo userInfo ){
+        ResponseVo<UserInfo> res = new ResponseVo();
+        try{
+            userInfoService.update(userInfo);
+            res.setData(userInfo);
+        }catch (Exception e){
+            log.error("update user failed, userInfo={}", userInfo);
+        }
+        return res;
+    }
 
 }
 
